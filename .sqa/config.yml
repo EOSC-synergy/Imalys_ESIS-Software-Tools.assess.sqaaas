@@ -1,0 +1,46 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/2.0.1
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/c7sepe2/Imalys_ESIS-Software-Tools:
+      branch: main
+      repo: https://github.com/c7sepe2/Imalys_ESIS-Software-Tools
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/c7sepe2/Imalys_ESIS-Software-Tools git:
+        commands:
+        - /usr/bin/env sh .sqa/script.hasty-celadon-cuscus.sh
+        container: qc.acc_chummy-viridian-tapir
+  QC.Doc:
+    repos:
+      github.com/c7sepe2/Imalys_ESIS-Software-Tools find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.dorky-ruby-tamarin.sh
+        container: qc.doc_hilly-gamboge-akbash
+      github.com/c7sepe2/Imalys_ESIS-Software-Tools git:
+        commands:
+        - /usr/bin/env sh .sqa/script.whiny-cobalt-chimpanzee.sh
+        container: qc.doc_leaky-ultramarine-catfish
+      github.com/c7sepe2/Imalys_ESIS-Software-Tools markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.pretty-lime-fly.sh
+        container: qc.doc_bumpy-thistle-pinscher
+  QC.Lic:
+    repos:
+      github.com/c7sepe2/Imalys_ESIS-Software-Tools licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.wiggy-lilac-dog.sh
+        container: qc.lic_dorky-ochre-whale
+  QC.Ver:
+    repos:
+      github.com/c7sepe2/Imalys_ESIS-Software-Tools get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.lovely-cerise-spaniel.sh
+        container: qc.ver_ready-blue-reindeer
+timeout: 5400
